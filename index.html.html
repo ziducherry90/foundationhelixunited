@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation of Helix United | Building Bright Futures</title>
+    
+    <link rel="icon" type="image/png" href="Logo 2.jpg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- THEME VARIABLES --- */
+        :root {
+            --brand-yellow: #FFD700;
+            --brand-black: #111111;
+            --brand-gray: #333333;
+            --white: #ffffff;
+            --light-bg: #f4f4f4;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        /* --- RESET & BASICS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-padding-top: 140px; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--brand-gray);
+            background-color: #f0f2f5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            color: var(--brand-black);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+
+        /* --- INTRO OVERLAY --- */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--brand-black);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-in-out, visibility 1s;
+        }
+
+        #intro-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-content {
+            text-align: center;
+            animation: zoomIn 2s ease-out;
+            background: transparent; 
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .intro-content img {
+            width: 350px;
+            height: auto;
+            margin: 0; 
+        }
+
+        .intro-text {
+            color: #ffffff;
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            margin: 0;
+        }
+        
+        @keyframes zoomIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background-color: var(--brand-black);
+            color: #ccc;
+            padding: 8px 5%;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1001;
+            border-bottom: 1px solid #333;
+        }
+
+        .top-bar-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-contact a {
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .top-contact a:hover { color: var(--brand-yellow); }
+
+        .top-socials { display: flex; gap: 15px; }
+
+        .top-socials a {
+            color: var(--white);
+            background-color: rgba(255,255,255,0.1);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .top-socials a:hover {
+            background-color: var(--brand-yellow);
+            color: var(--brand-black);
+            transform: translateY(-2px);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: sticky;
+            top: 20px; 
+            z-index: 1000;
+            width: 95%;
+            max-width: 1280px;
+            margin: 15px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            background: transparent;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container {
+            background-color: var(--brand-black);
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-right: 4px solid var(--brand-yellow);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+            padding-right: 40px;
+        }
+
+        .logo-container img { height: 55px; width: auto; }
+
+        .logo-text {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span { color: var(--brand-yellow); }
+
+        nav { 
+            flex-grow: 1;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 30px;
+            clip-path: polygon(2% 0, 100% 0, 100% 100%, 0% 100%);
+            margin-left: -25px;
+        }
+
+        nav ul { display: flex; gap: 10px; align-items: center; }
+
+        nav a {
+            color: var(--brand-black);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--brand-yellow);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 30px;
+        }
+
+        nav a:hover { color: var(--brand-black); }
+        nav a:hover::before { transform: scaleX(1); transform-origin: left; }
+
+        .nav-btn {
+            background-color: var(--brand-black);
+            color: var(--brand-yellow) !important;
+            border: 2px solid var(--brand-black);
+        }
+
+        .nav-btn:hover {
+             background-color: var(--brand-yellow);
+             color: var(--brand-black) !important;
+        }
+        .nav-btn::before { display: none; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            margin-top: -100px; 
+            padding-top: 150px;
+            background: linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.7)), url('About.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .hero span { color: var(--brand-yellow); }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            border-left: 4px solid var(--brand-yellow);
+            padding-left: 20px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: var(--brand-yellow);
+            color: var(--brand-black);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--brand-yellow);
+            font-family: 'Oswald', sans-serif;
+            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+        }
+
+        .btn:hover { background-color: transparent; color: var(--brand-yellow); }
+
+        /* --- COMMON SECTION STYLES --- */
+        .section-padding { padding: 100px 8%; }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 5px;
+            width: 100%;
+            height: 15px;
+            background-color: var(--brand-yellow);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about { background: var(--white); }
+        .about-container { display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto; }
+        .about-image { flex: 1; }
+        .about-image img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 4px solid var(--brand-yellow); }
+        .about-text { flex: 1; }
+        .about-text p { margin-bottom: 25px; font-size: 1.25rem; line-height: 1.8; color: #444; }
+
+        /* --- PARTNERS SECTION --- */
+        .partners { background-color: var(--light-bg); text-align: center; overflow: hidden; }
+        .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
+        .marquee-track { display: flex; align-items: center; gap: 50px; width: max-content; animation: scroll 20s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-track:hover { animation-play-state: paused; }
+        .partner-card { background: var(--white); padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 250px; height: 160px; display: flex; justify-content: center; align-items: center; border: 1px solid #ddd; flex-shrink: 0; }
+        .partner-card img { max-width: 90%; max-height: 90%; object-fit: contain; filter: grayscale(100%); transition: var(--transition); }
+        .partner-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+
+        /* --- GOALS SECTION --- */
+        .goals { background-color: var(--brand-black); color: var(--white); text-align: center; }
+        .goals .section-title { color: var(--white); }
+        .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .goal-card { background-color: rgba(255,255,255,0.05); padding: 50px 30px; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition); }
+        .goal-card:hover { background-color: var(--brand-yellow); transform: translateY(-10px); }
+        .goal-card:hover h3, .goal-card:hover p { color: var(--brand-black); }
+        .goal-card:hover .goal-icon { color: var(--brand-black); }
+        .goal-card h3 { color: var(--brand-yellow); margin-bottom: 20px; font-size: 1.5rem; }
+        .goal-card p { font-size: 1.1rem; }
+        .goal-icon { font-size: 3.5rem; color: var(--brand-yellow); margin-bottom: 25px; transition: var(--transition); }
+
+        /* --- SDG SECTION --- */
+        .sdg { background-color: var(--white); text-align: center; }
+        .sdg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .sdg-card { background: var(--white); padding: 40px 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: var(--transition); border: 1px solid #eee; }
+        .sdg-card:hover { transform: translateY(-10px); }
+        .sdg-icon { font-size: 3rem; margin-bottom: 20px; }
+        .sdg-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--brand-black); }
+        .sdg-card p { font-size: 1rem; color: #666; }
+
+        /* --- PROJECTS SECTION --- */
+        .projects { background-color: var(--light-bg); text-align: center; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .project-card { background: var(--white); border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); overflow: hidden; transition: var(--transition); text-align: left; position: relative; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
+        .project-img-wrapper { position: relative; width: 100%; height: 250px; overflow: hidden; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .project-card:hover .project-img { transform: scale(1.1); }
+        .badge { position: absolute; top: 15px; right: 15px; background-color: var(--brand-yellow); color: var(--brand-black); padding: 6px 14px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; border-radius: 30px; font-family: 'Oswald', sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2; }
+        .project-info { padding: 30px; position: relative; }
+        .project-info::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 5px; background-color: var(--brand-yellow); transition: width 0.4s ease; }
+        .project-card:hover .project-info::before { width: 100%; }
+        .project-info h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; }
+        .project-info p { font-size: 1rem; color: #555; margin-bottom: 10px; }
+
+        /* --- GET INVOLVED --- */
+        .get-involved { background-color: var(--white); text-align: center; }
+        .involved-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .involved-item { flex: 1; min-width: 250px; background: var(--light-bg); padding: 50px 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+        .involved-item:hover { transform: translateY(-5px); }
+        .involved-item i { font-size: 3.5rem; color: var(--brand-black); margin-bottom: 20px; }
+        .involved-item:hover i { color: var(--brand-yellow); }
+        .involved-item h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .involved-item p { font-size: 1.1rem; }
+
+        /* --- FOOTER --- */
+        footer { background-color: var(--brand-black); color: #999; padding: 80px 8% 30px; }
+        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 50px; border-bottom: 1px solid #333; padding-bottom: 50px; margin-bottom: 30px; }
+        .footer-section h3 { color: var(--white); margin-bottom: 25px; border-left: 3px solid var(--brand-yellow); padding-left: 10px; }
+        .contact-info p { margin-bottom: 15px; display: flex; gap: 15px; align-items: center; font-size: 1.1rem; }
+        .contact-info i { color: var(--brand-yellow); }
+        .social-links { display: flex; gap: 15px; margin-top: 25px; }
+        .social-links a { background-color: #222; color: var(--white); width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 50%; transition: var(--transition); font-size: 1.2rem; }
+        .social-links a:hover { background-color: var(--brand-yellow); color: var(--brand-black); }
+        .footer-bottom { text-align: center; font-size: 1rem; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            header { width: 90%; top: 10px; padding: 10px; }
+            .logo-container { padding: 8px 15px; clip-path: none; border-right: none; background: transparent; }
+            .logo-text { display: none; }
+            nav { clip-path: none; margin-left: 0; background: transparent; backdrop-filter: none; padding-right: 0; }
+            nav ul { gap: 5px; }
+            nav a { padding: 8px 12px; font-size: 0.8rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .section-padding { padding: 60px 5%; }
+            .about-container { flex-direction: column; }
+            .about-image { order: -1; }
+            .top-bar-content { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body class="no-scroll">
+
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <h1 class="intro-text" style="font-size: 2rem;">Welcome to</h1>
+            <img src="logo_2.png" alt="Helix United Banner Logo">
+            <h2 class="intro-text" style="font-size: 1.5rem; letter-spacing: 2px;">Building Bright Futures</h2>
+        </div>
+    </div>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-contact">
+                <a href="mailto:foundationofhelixunited@gmail.com"><i class="fas fa-envelope"></i> foundationofhelixunited@gmail.com</a>
+            </div>
+            <div class="top-socials">
+                <a href="https://www.facebook.com/Foundationofhu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/foundationofhelixunited" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo_2.png" alt="Helix United Logo">
+            <div class="logo-text">FOUNDATION OF<br><span>HELIX UNITED</span></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#sdg">SDG</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="nav-btn">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Building <span>Bright Futures</span><br>Through Football</h1>
+        <p>Fight . Honour . Pride</p>
+        <a href="#projects" class="btn">Our Impact</a>
+    </section>
+
+    <section id="about" class="about section-padding">
+        <div style="text-align: center;">
+            <h2 class="section-title">Who We Are</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="About 1.jpg" alt="Foundation of Helix United Team">
+            </div>
+            <div class="about-text">
+                <p>In the heart of Bangladesh, a beacon of hope emerged in the form of the Foundation of Helix United. Inspired by the spirit of the Helix United Football Club, we are a non-profit organization dedicated to empowering youth and addressing societal issues.</p>
+                <p>We are proud to align our mission with the <strong>United Nations Sustainable Development Goals (SDGs)</strong>. Through the universal language of football, we actively work towards <strong>No Poverty</strong>, ensuring <strong>Good Health & Well-being</strong>, providing <strong>Quality Education</strong> through discipline, and <strong>Reducing Inequalities</strong> in our community.</p>
+                <p>Join us as we harness the power of teamwork to build a legacy of unity, happiness, and a brighter, sustainable future for the next generation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="partners section-padding">
+        <h2 class="section-title">We Work With</h2>
+        <p style="margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.2rem;">Collaborating with organizations to create a stronger community network.</p>
+        
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <div class="partner-card"><img src="CKDC.jpg" alt="CKDC Logo"></div>
+                <div class="partner-card"><img src="TurfTalk.jpg" alt="Turf Talk"></div>
+                <div class="partner-card"><img src="Amber Alert for Bangladesh.jpg" alt="Amber Alert"></div>
+                <div class="partner-card"><img src="Fierce Falcons.jpg" alt="Fierce Falcons"></div>
+
+                <div class="partner-card"><img src="CKDC.jpg" alt="CKDC Logo"></div>
+                <div class="partner-card"><img src="TurfTalk.jpg" alt="Turf Talk"></div>
+                <div class="partner-card"><img src="Amber Alert for Bangladesh.jpg" alt="Amber Alert"></div>
+                <div class="partner-card"><img src="Fierce Falcons.jpg" alt="Fierce Falcons"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals" class="goals section-padding">
+        <h2 class="section-title">Our Goals</h2>
+        <div class="goals-grid">
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fas fa-futbol"></i></div>
+                <h3>Spreading Joy</h3>
+                <p>Using the universal language of football to transcend boundaries, bring people together, and foster a love for the beautiful game.</p>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Social Impact</h3>
+                <p>Devising effective solutions for education, healthcare, and social equality to drive meaningful change in society.</p>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fas fa-users"></i></div>
+                <h3>Youth Empowerment</h3>
+                <p>Instilling core values of teamwork, discipline, and perseverance in the next generation of leaders.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sdg" class="sdg section-padding">
+        <h2 class="section-title">Sustainable Development Goals</h2>
+        <p style="margin-bottom: 40px; font-size: 1.2rem;">We are committed to the United Nations SDGs to create a better world.</p>
+        <div class="sdg-grid">
+            <div class="sdg-card" style="border-bottom: 5px solid #E5243B;">
+                <div class="sdg-icon" style="color: #E5243B;"><i class="fas fa-hand-holding-usd"></i></div>
+                <h3>No Poverty</h3>
+                <p>Supporting the underprivileged through winter drives, Ramadan food distribution, and charity events.</p>
+            </div>
+
+            <div class="sdg-card" style="border-bottom: 5px solid #4C9F38;">
+                <div class="sdg-icon" style="color: #4C9F38;"><i class="fas fa-heartbeat"></i></div>
+                <h3>Good Health</h3>
+                <p>Promoting physical and mental well-being through football and active community sports.</p>
+            </div>
+
+            <div class="sdg-card" style="border-bottom: 5px solid #C5192D;">
+                <div class="sdg-icon" style="color: #C5192D;"><i class="fas fa-book-reader"></i></div>
+                <h3>Quality Education</h3>
+                <p>Empowering youth with discipline, leadership skills, and teamwork through organized sports.</p>
+            </div>
+
+            <div class="sdg-card" style="border-bottom: 5px solid #DD1367;">
+                <div class="sdg-icon" style="color: #DD1367;"><i class="fas fa-users"></i></div>
+                <h3>Reduced Inequalities</h3>
+                <p>Bridging gaps in society by bringing people together regardless of background through unity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects section-padding">
+        <h2 class="section-title">Our Projects</h2>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="project-wall.jpg" alt="Wall Canvas Art" class="project-img">
+                    <span class="badge">Community Art</span>
+                </div>
+                <div class="project-info">
+                    <h3>Wall Canvas: Helix Edition</h3>
+                    <p>Beautifying our streets with art that inspires hope and unity under the "Reform Bangladesh" initiative.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="project-winter1.jpg" alt="Winter Warmth Drive" class="project-img">
+                    <span class="badge">Charity</span>
+                </div>
+                <div class="project-info">
+                    <h3>Winter Warmth Drive 1.0</h3>
+                    <p>Collecting and distributing warm clothes to ensure no one suffers in the cold.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="project-winter2.jpg" alt="Winter Warmth Drive 2.0" class="project-img">
+                    <span class="badge">Charity</span>
+                </div>
+                <div class="project-info">
+                    <h3>Winter Warmth Drive 2.0</h3>
+                    <p>Expanding our reach to help the homeless with blankets and winter essentials.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="project-ramadan1.jpg" alt="Ramadan Drive" class="project-img">
+                    <span class="badge">Relief</span>
+                </div>
+                <div class="project-info">
+                    <h3>Rahmat e Ramadan</h3>
+                    <p>Providing food and support to low-income families during the holy month.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="project-ramadan2.jpg" alt="Ramadan Drive 2.0" class="project-img">
+                    <span class="badge">Relief</span>
+                </div>
+                <div class="project-info">
+                    <h3>Rahmat e Ramadan 2.0</h3>
+                    <p>Organizing daily Iftar donations and charity drives throughout Ramadan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="get-involved section-padding">
+        <h2 class="section-title">Get Involved</h2>
+        <div class="involved-grid">
+            <div class="involved-item">
+                <i class="fas fa-futbol"></i>
+                <h3>Participate</h3>
+                <p>Join our sports events and initiatives.</p>
+            </div>
+            <div class="involved-item">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Donate</h3>
+                <p>Your support fuels our community projects.</p>
+            </div>
+            <div class="involved-item">
+                <i class="fas fa-share-alt"></i>
+                <h3>Share</h3>
+                <p>Spread our mission to the world.</p>
+            </div>
+            <div class="involved-item">
+                <i class="fas fa-handshake"></i>
+                <h3>Networking</h3>
+                <p>Connect with professionals, mentors, and peers to grow your career impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Foundation of Helix United</h3>
+                <p>Building bright futures through football in Dhaka, Bangladesh.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/Foundationofhu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/foundationofhelixunited" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:foundationofhelixunited@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section contact-info">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Siddheshwari, Dhaka</p>
+                <p><i class="fas fa-envelope"></i> foundationofhelixunited@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +880 1865-467951</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Foundation of Helix United. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            // Keep intro for 2.5 seconds total, then fade out
+            setTimeout(() => {
+                const intro = document.getElementById('intro-overlay');
+                intro.classList.add('fade-out');
+                
+                // Allow scrolling again
+                document.body.classList.remove('no-scroll');
+            }, 2500); 
+        });
+    </script>
+
+</body>
+</html>
